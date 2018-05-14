@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    //创建类 class 类名{ },与es5的构造函数相比更加简单
+    // 创建动物类
+    class Animal {
+      // 实例属性 通过constructor
+      constructor(name,age){
+        this.name = name
+        this.age = age
+      }
+      // 实例方法  该方法会添加到原型上    this指向实例对象
+      eat(){
+        console.log(`${this.name},吃吃`)
+      }
+      // 静态方法(static) 该方法不添加到原型上    此时this指向Animal
+      static run(){
+        console.log("跑跑")
+      }
+    }
+
+    // 静态属性,写在外层,后面直接调用
+    Animal.MAX_AGE = 10
+
+    // 实例对象
+    let anil = new Animal("小猫",2)
+    //调用
+    console.log(anil)
+    console.log(Animal.MAX_AGE)
+    Animal.run()
+
+
+
+
+    /*类继承
+      1.Person继承Animal的所有成员,
+      2.子类添加自己的属性时使用constructor 会将从父类继承的的实例属性覆盖,
+      此时需要使用super()将父类属性继承
+    */
+    class Person extends Animal {
+      // 添加自己的属性height
+      constructor(name,age,height){
+        super(name,age)
+        this.height = height
+      }
+      // 添加自己的方法 添加到自己的原型上
+      sleep(){
+        console.log("睡觉")
+      }
+    }
+    
+    // 实例
+    let p1 = new Person('小明',19,180)
+    console.log(p1)
+
+
+  </script>
+</body>
+</html>
